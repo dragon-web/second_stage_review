@@ -1,6 +1,7 @@
 #include<iostream>
 #include<unistd.h>
-
+#include<stdlib.h>
+#include<sys/wait.h>
 int main()
 {
   printf("begin-----------------\n");
@@ -15,16 +16,19 @@ int main()
     {
       printf("I am child,pid = %d,ppid = %d\n",getpid(),getppid());
       sleep(1);
+      exit(10);
     }
   }
   else 
   {
-    while(1)
     {
-      printf("I am father,pid = %d,ppid = %d\n",getpid(),getppid());
+    printf("I am father,pid = %d,ppid = %d\n",getpid(),getppid());
       sleep(1);
-
-    }}
+      int status;
+     wait(&status);
+     printf("exit_code : %d\n",(status >> 8)&0xFF);
+    }
+  }
 
 
   return 0;
