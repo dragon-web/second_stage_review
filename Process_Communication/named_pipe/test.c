@@ -13,11 +13,10 @@ int main()
   write(fd,"i love you",10);
   printf("write down\n");
 
-
   while(1)
   {
     sleep(1);
   }
-close(fd);
+  close(fd);
   return 0;
 }

@@ -12,7 +12,7 @@ int main()
   }
   char buf[1024] = {0};
   read(fd,buf,sizeof(buf) - 1);
-  printf("buf = %s",buf);
+  printf("buf = %s\n",buf);
   while(1)
   {
     sleep(1);
