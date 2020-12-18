@@ -1,0 +1,21 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CreateUDG	test.cpp	/^void CreateUDG(MGraph *G){$/;"	f
+INFINITY	test.cpp	9;"	d	file:
+LocateVex	test.cpp	/^int LocateVex(MGraph * G,VertexType v){$/;"	f
+MAX_VERtEX_NUM	test.cpp	6;"	d	file:
+MGraph	test.cpp	/^}MGraph;$/;"	t	typeref:struct:__anon1	file:
+PathMatrix	test.cpp	/^typedef int PathMatrix[MAX_VERtEX_NUM];     \/\/用于存储最短路径中经过的顶点的下标$/;"	t	file:
+ShortPathTable	test.cpp	/^typedef int ShortPathTable[MAX_VERtEX_NUM]; \/\/用于存储各个最短路径的权值和$/;"	t	file:
+ShortestPath_Dijkstra	test.cpp	/^void ShortestPath_Dijkstra(MGraph G,int v0,PathMatrix *p,ShortPathTable *D){$/;"	f
+VRType	test.cpp	7;"	d	file:
+VertexType	test.cpp	8;"	d	file:
+arcnum	test.cpp	/^    int vexnum,arcnum;                      \/\/记录图的顶点数和弧（边）数$/;"	m	struct:__anon1	file:
+arcs	test.cpp	/^    VRType arcs[MAX_VERtEX_NUM][MAX_VERtEX_NUM];                         \/\/二维数组，记录顶点之间的关系$/;"	m	struct:__anon1	file:
+main	test.cpp	/^int main(){$/;"	f
+vexnum	test.cpp	/^    int vexnum,arcnum;                      \/\/记录图的顶点数和弧（边）数$/;"	m	struct:__anon1	file:
+vexs	test.cpp	/^    VertexType vexs[MAX_VERtEX_NUM];        \/\/存储图中顶点数据$/;"	m	struct:__anon1	file:
