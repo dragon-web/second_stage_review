@@ -1,0 +1,34 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+C	test.cpp	/^	bool C(double mid)$/;"	f	struct:max_mactch
+M	test.cpp	/^double S,M,V;$/;"	v
+N	test.cpp	/^int N,T;$/;"	v
+S	test.cpp	/^double S,M,V;$/;"	v
+T	test.cpp	/^int N,T;$/;"	v
+V	test.cpp	/^double S,M,V;$/;"	v
+WW	test.cpp	/^}WW;$/;"	v	typeref:struct:max_mactch
+a	test.cpp	/^}a[maxn];$/;"	v	typeref:struct:node
+dis	test.cpp	/^double dis[maxn][maxn];$/;"	v
+g	test.cpp	/^	vector<int>g[maxn];$/;"	m	struct:max_mactch	file:
+g	test.cpp	/^std::vector<int> g[maxn];$/;"	v
+inf	test.cpp	/^const int inf = 0x3f3f3f3f;$/;"	v
+init	test.cpp	/^	void init()$/;"	f	struct:max_mactch
+left	test.cpp	/^	int left[maxn];$/;"	m	struct:max_mactch	file:
+ll	test.cpp	/^typedef long long ll;$/;"	t	file:
+main	test.cpp	/^int main() $/;"	f
+match	test.cpp	/^	bool match(int u)$/;"	f	struct:max_mactch
+max_mactch	test.cpp	/^struct max_mactch$/;"	s	file:
+maxn	test.cpp	/^const int maxn = 1111;$/;"	v
+ms	test.cpp	19;"	d	file:
+node	test.cpp	/^struct node$/;"	s	file:
+oo	test.cpp	16;"	d	file:
+per	test.cpp	15;"	d	file:
+rep	test.cpp	14;"	d	file:
+ull	test.cpp	/^typedef unsigned long long ull;$/;"	t	file:
+vis	test.cpp	/^	bool vis[maxn];$/;"	m	struct:max_mactch	file:
+x	test.cpp	/^	double x,y;$/;"	m	struct:node	file:
+y	test.cpp	/^	double x,y;$/;"	m	struct:node	file:
