@@ -45,11 +45,11 @@ vector<int> Solution(string &s)
         }
    //     cout << "///////////////////////" <<endl;
    //  cout << "dp1.size()" << dp1.size()<<endl;
-       /* for(size_t i = 0 ;i < dp1.size(); ++i)
+         for(size_t i = 0 ;i < dp1.size(); ++i)
         {
             cout <<  dp1[i] << " ";
-        }*/
-        //cout << endl;
+        }
+        cout << endl;
         auto vec1 = dp1.begin();
         auto vec2 = dp2.begin();
         int total = 0;
@@ -58,7 +58,7 @@ vector<int> Solution(string &s)
             int _temp = 0;
             if(*vec1 == *vec2)
             {
-                _temp = 0;
+                _temp = 1;
             }
             else{
                 _temp = -1;
@@ -80,7 +80,7 @@ int main()
     string s;
     cout << "请输入你要转换的m序列" << endl; 
     cin>>s;
-    cout << "自相关序列" << endl;
+    cout << "互相关序列" << endl;
     vector<int> ret = Solution(s);
     for(size_t i = 0; i < ret.size(); ++i)
     {
