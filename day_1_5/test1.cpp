@@ -86,7 +86,7 @@ int main()
     vector<int> ret = Solution(s,s1);
     for(size_t i = 0; i < ret.size(); ++i)
     {
-        cout << ret[i];
+        cout << ret[i] << " ";
     }
     cout << endl;
     return 0;
