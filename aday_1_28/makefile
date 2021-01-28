@@ -1,4 +1,4 @@
-test2 : test2.cpp 
+test3 : test3.cpp 
 	g++ $^ -o $@ -g -std=c++11
 ./PHONY:
 clean:

@@ -24,15 +24,14 @@ int func(vector<vector<int>> &vi)
     if (vi.empty())
         return -1;
     int row = vi.size();
-    int col = Size;
     vector<vector<bool>> jg(row,vector<bool>(col,false));
-    for (int i = 0; i < col; ++i)
+    for (int i = 0; i < vi[0].size(); ++i)
     {
         jg[0][i] = true;
     }
     for (int i = 1; i < row; ++i)
     {
-        for (int j = 0; j < col; ++j)
+        for (int j = 0; j < vi[i].size(); ++j)
         {
             if (vi[i][j] == 0)
             {
@@ -49,7 +48,7 @@ int func(vector<vector<int>> &vi)
         }
 
     }
-    for (int i = 0; i < col; ++i)
+    for (int i = 0; i < vi[row-1].size(); ++i)
     {
         if (jg[row - 1][i] == true)
             return vi[row - 1][i];
