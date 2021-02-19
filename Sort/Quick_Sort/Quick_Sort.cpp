@@ -38,8 +38,8 @@ void Quick_Sort(int *arr ,size_t left ,size_t right)
     if(right - left > 1)
     {
         int div = Pation(arr,left,right); // 基准值
-        Pation(arr,left,div);  
-        Pation(arr,div+1,right);
+        Quick_Sort(arr,left,div);  
+        Quick_Sort(arr,div+1,right);
     }
 }
 int main()
