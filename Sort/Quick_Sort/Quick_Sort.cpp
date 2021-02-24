@@ -28,7 +28,7 @@ int Pation(int* arr, int left, int right)
             Swap(&arr[begin],&arr[end]);
         }
     }
-    if(begin != right-1)
+    if(begin != right-1)//begin 不是最后一个元素
     Swap(&arr[begin],&arr[right -1]);
     return begin;
 }
