@@ -18,7 +18,19 @@ class String
         }
         String(const String& s)
         {
-            
+                _str = new char[strlen(s._str) + 1];
+                strcpy(_str,s._str);
+        }
+        String& operator = (const String s)
+        {
+            if(&s != this)
+            {
+              char* temp = new char[strlen(s._str) + 1];
+              strcpy(temp,s._str);
+              delete[] _str;
+              this->_str = temp;
+            }
+            return *this;
         }
         ~String()
         {
