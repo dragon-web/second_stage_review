@@ -10,7 +10,9 @@ class Solution {
         {
             for(size_t i = 0;i < vec.size();++i)
             {
-                cout << vec[i] << " ";
+                cout << vec[i] << "-";
+                cout << vec[i].size() << endl;
+                cout << endl;
             }
         }
         vector<string> printVertically(string s) {
@@ -25,7 +27,6 @@ class Solution {
                 {
                     end  = i;
                     string temp = s.substr(begin,end - begin);
-                    cout << "begin = " << begin << endl;
                     cout << temp << endl;
                     begin = i + 1;
                     vec.push_back(temp);
@@ -34,21 +35,34 @@ class Solution {
             }
             string temp = s.substr(begin,s.size() - begin);
             vec.push_back(temp);
+            Print(vec);
             cout << "vec.size() = " << vec.size() << endl;
             max_size = temp.size() > max_size ? temp.size() : max_size;
             cout << "max_size = " << max_size << endl;
             for(size_t i = 0;i < max_size;++i)
             {
                 string contemp;
-                for(size_t j = 0; j < s.size();++j)
+                for(size_t j = 0; j < vec.size();++j)
                 {
                     if(j < vec.size() && i < vec[j].size())
-                        contemp.push_back(vec[j][i]);
+                     contemp.push_back(vec[j][i]);
                     else
-                        contemp.push_back(' ');
+                    {    contemp.push_back(' ');
+                    }
                 }
+                cout << "contemp size = " << contemp.size() << endl;
                 res.push_back(contemp);
             }
+            for(size_t i = 0;i < res.size();++i)
+            {
+                int end = res[i].size() - 1;
+                while(res[i][end] == ' ')
+                {
+                    end--;
+                }
+                res[i] = res[i].substr(0,end + 1);
+            }
+            Print(res);
             return res;
         }
 };
@@ -57,7 +71,7 @@ class Solution {
 int main()
 {
     string str;
-    cin >> str;
+    getline(cin,str);
     Solution a;
     vector <string> res = a.printVertically(str);
 }
