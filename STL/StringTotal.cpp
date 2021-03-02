@@ -2,7 +2,7 @@
 #include <string.h>
 
 using namespace std;
-
+using std::ostream;
 class String
 {
     public :
@@ -87,11 +87,33 @@ class String
     }
     void resize(size_t newsize , char ch)
     {
-        while(newsize > _capacity)
+        size_t beginsize = _size;
+        size_t oldsize = _capacity;
+        while(newsize > oldsize)
         {
-            
+            oldsize = 2 * _capacity;
+            reserve(oldsize);
         }   
-
+        memset(_str + beginsize ,ch,oldsize - beginsize);
+        _size = newsize;
+    }
+    char& operator[](size_t index)
+    {
+        return this->_str[index]; 
+    }
+    String& operator += (const char *str)
+    {
+        while(strlen(str) + _size > _capacity)
+        {
+            reserve(2 * _capacity);
+        }
+        strcat(_str,str);
+        return *this;
+    }
+   friend ostream& operator << (ostream &out,String &s)
+    {
+        out << s._str;
+        return out;
     }
     private:
         size_t _size;
@@ -101,3 +123,13 @@ class String
 };
 
 size_t String::npos = -1;
+
+int main()
+{
+    String S = "I LOVE YOU";
+    cout << S[2];
+    cout << S << endl;
+    S += "HELLO";
+    cout << S <<endl;
+    return 0;
+}
