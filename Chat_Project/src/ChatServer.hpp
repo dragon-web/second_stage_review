@@ -8,7 +8,32 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <pthread.h>
+#include "ConnectInfo.hpp"
 #define TCP_PORT 8086
+
+class TcpConnect
+{
+    public:
+        TcpConnect()
+        {
+            new_sock = -1;
+        }
+        ~TcpConnect()
+        {}
+        void SetSockFd(int fd)
+        {
+            new_sock = fd;
+        }
+        int GetSockFd()
+        {
+            return new_sock;
+        }
+    private:
+        int new_sock;
+};
+
+
+
 
 class ChatServer
 {
@@ -45,7 +70,6 @@ class ChatServer
             {
                 return -3;
             }
-
             return 0;
         }
         //启动线程
@@ -61,10 +85,13 @@ class ChatServer
                     continue;
                 }
                 pthread_t tid;
-                int ret = pthread_create(&tid,NULL,LoginRegisterStart,NULL);
+                TcpConnect *tc = new TcpConnect();
+                tc->SetSockFd(new_sock);
+                
+                int ret = pthread_create(&tid,NULL,LoginRegisterStart,(void*)tc);
                 if(ret < 0)
                 {
-
+                           
                 }
 
             }
@@ -75,7 +102,57 @@ class ChatServer
         {
             //注册
             //登录
+         pthread_detach(pthread_self());    
+        TcpConnect *tc = (TcpConnect*)arg;
+        char ques_type = '\0';
+       ssize_t recv_size = recv(tc->GetSockFd(),&ques_type,1,0);
+        if(recv_size < 0)
+        {
+            close(tc->GetSockFd());
+            return NULL;
         }
+        else if(recv_size == 0) 
+        {
+            close(tc->GetSockFd());
+            return NULL;
+        }
+        switch(ques_type)
+        {
+            case REGISTER_RESQ:  // 处理注册请求
+                {
+
+                    break;
+                }
+            case LOGIN_RESQ:   //处理登录请求
+                {
+                    break;
+                }
+           
+        }
+
+        }
+
+
+    int DealRegisterinfo(int new_sock)
+    {
+        struct RegisterInfo ri;
+       ssize_t recv_size =  recv (new_sock,&ri,sizeof(ri),0);
+        if(recv_size < 0)
+        {
+            return -1;
+        }
+        else if(recv_size == 0){
+        close(new_sock);
+        return -2;
+        }
+        //正常接受到,将数据递交到用户管理模块
+        
+    }
+
+    int DealLogin()
+    {
+        
+    }
     private:
         int tcp_sock;
         int udp_sock;

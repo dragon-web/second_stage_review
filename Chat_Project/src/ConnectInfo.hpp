@@ -21,7 +21,7 @@ struct RegisterInfo
 
 struct ReplyInfo
 {
-    int RespStatus;
+    int RespStatus;//注册成功与否 登录成功与否
     uint32_t id_; //返回给用户的id
 };
 
