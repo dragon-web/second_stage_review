@@ -15,42 +15,24 @@ void sigcb(int number)
     _exit(0);
 }
 
-void smash(void)
+void smash(char arr[2])
 {
-    char str1[5] = "";
-    strcpy(str1,p);
-   // printf("mash");
+    const char *p1 = "I am sorry";
+    strcpy(arr,p1);
     signal(11,sigcb);
 }
 
 void uncalled()
 {
     char p[10] = "";
-    const char* str1 = "Hello linux asbdashbxakjsxnaksja";
-    sprintf(p,"%s",str1);
+    sprintf(p,"%s","Hello linux asbdashbxakjsxnaksja");
     signal(11,sigcb);
-}
-pointer getFuncPointer(char* sfuncname)
-{
-    if(strcmp(sfuncname,"smash")==0)
-    {
-        return &smash;
-    }else if(strcmp(sfuncname,"uncalled")==0){
-        return &uncalled;
-    }
-    return NULL;                                                                                                  
 }
 
 int main()
 {
-    char str[20];
-    printf("please input func name:");
-    scanf("%s",str);
-    pointer point = NULL;
-    point = getFuncPointer(str);
-    if(point != NULL)
-    {
-        (*point)();
-    }
+    char arr[2] = {0};
+    smash(arr);
+
     return 0;
 }
