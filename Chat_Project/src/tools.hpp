@@ -4,6 +4,8 @@
 #include <iostream>
 
 using namespace std;
+
+#define LOG(LogLevel,msg) Log(loglevel,__FILE__,__LINE__,)
 enum LogLevel
 {
     INFO = 0,
@@ -31,11 +33,11 @@ class TimeStamp
 
 
 
-ostream& Log(LogLevel logvel, char* file ,int line, const string & msg)
+ostream& Log(LogLevel logvel, const char* file ,int line, string & msg)
 {
     string timestamp;
     TimeStamp::GetTimeStamp(&timestamp);
-    cout << "[" << timestamp << " "<< logvel <<  
-
+    cout << "[" << timestamp << " "<< logvel << " " << file  << ":" << line  << "]" << " " << " " << msg; 
+    return std::cout;
 }
 

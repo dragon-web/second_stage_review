@@ -9,6 +9,7 @@
 #include <arpa/inet.h>
 #include <pthread.h>
 #include "ConnectInfo.hpp"
+#include "tools.hpp"
 #define TCP_PORT 8086
 
 class TcpConnect
@@ -70,6 +71,8 @@ class ChatServer
             {
                 return -3;
             }
+            string temp = "listen port is 8086";
+            Log(INFO,__FILE__,__LINE__,temp) << endl;
             return 0;
         }
         //启动线程
