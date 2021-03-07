@@ -10,6 +10,7 @@
 #include <pthread.h>
 #include "ConnectInfo.hpp"
 #include "tools.hpp"
+#include "UserManager.hpp"
 #define TCP_PORT 8086
 
 class TcpConnect
@@ -29,8 +30,14 @@ class TcpConnect
         {
             return new_sock;
         }
+        void *GetServer()
+        {
+            server = this;
+            return server;
+        }
     private:
         int new_sock;
+        void *server; //保存this指针，线程入口函数可以获取用户管理模块的指针
 };
 
 
@@ -72,7 +79,10 @@ class ChatServer
                 return -3;
             }
             string temp = "listen port is 8086";
-            Log(INFO,__FILE__,__LINE__,temp) << endl;
+            user_manager_ = new UserManger();
+            if(!user_manager_)
+            { Log(INFO,__FILE__,__LINE__,temp) << endl;}
+
             return 0;
         }
         //启动线程
@@ -87,14 +97,17 @@ class ChatServer
                 {
                     continue;
                 }
+        TcpConnect* tc = new TcpConnect();
+        tc->SetSockFd(new_sock);
+        tc->GetServer();
+    
+
                 pthread_t tid;
-                TcpConnect *tc = new TcpConnect();
-                tc->SetSockFd(new_sock);
                 
                 int ret = pthread_create(&tid,NULL,LoginRegisterStart,(void*)tc);
                 if(ret < 0)
                 {
-                           
+                               
                 }
 
             }
@@ -107,6 +120,7 @@ class ChatServer
             //登录
          pthread_detach(pthread_self());    
         TcpConnect *tc = (TcpConnect*)arg;
+        ChatServer* cs = (ChatServer*)tc->GetServer();
         char ques_type = '\0';
        ssize_t recv_size = recv(tc->GetSockFd(),&ques_type,1,0);
         if(recv_size < 0)
@@ -119,20 +133,24 @@ class ChatServer
             close(tc->GetSockFd());
             return NULL;
         }
+        int resp_status = -1;
         switch(ques_type)
         {
             case REGISTER_RESQ:  // 处理注册请求
                 {
-
+                   resp_status = cs->DealRegisterinfo(tc->GetSockFd()); 
+                   
+        
                     break;
                 }
             case LOGIN_RESQ:   //处理登录请求
                 {
                     break;
                 }
-           
-        }
+        struct ReplyInfo ri;
 
+        }
+        return 0;
         }
 
 
@@ -148,8 +166,13 @@ class ChatServer
         close(new_sock);
         return -2;
         }
-        //正常接受到,将数据递交到用户管理模块
-        
+        //正常接受到,将数据递交到用户管理模块        
+    int ret =  user_manager_->DealRegister(ri.nick_name_,ri.school_,ri.password_);
+    if(ret < 0)
+    {
+        return REGISTER_FAILED;
+    }
+    return REGISTER_SUCCESS;
     }
 
     int DealLogin()
@@ -160,5 +183,7 @@ class ChatServer
         int tcp_sock;
         int udp_sock;
         uint16_t tcp_port;
+
+        UserManger* user_manager_;
 };
 
