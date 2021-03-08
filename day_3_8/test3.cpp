@@ -8,34 +8,40 @@ using namespace std;
 string Solution(string str)
 {
     string Ch;
+    string temp;
     for(int i = 0;i < str.size();++i)
     {
         int count = 1;
         int pos = 0;
-        bool flag = 1; 
-        for(int j = i+1; j < str.size();++j)
+        bool flag = 0;
+        for(int j = i + 1;j < str.size();++j)
         {
             if(str[i] == str[j])
             {
                 count++;
                 pos = j;
+                flag = 0;
             }
-            else{
-                pos = j - 1;
+            else
+            {
+                pos = j;
+                flag = 1;
                 break;
             }
         }
         Ch = to_string(count);
+        temp.assign(Ch);
         count = 1;
-        Ch.push_back(str[i]);
-        i = pos;  
+        temp.push_back(str[i]);
+        i = pos;
     }
-    return Ch;
+    return temp;
 }
+
 int main()
 {
     string str;
-    while(cin >> str)
+    while(getline(cin,str))
     {
         string temp = Solution(str);
         cout << temp << endl;
