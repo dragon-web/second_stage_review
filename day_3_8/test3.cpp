@@ -12,20 +12,16 @@ string Solution(string str)
     for(int i = 0;i < str.size();++i)
     {
         int count = 1;
-        int pos = 0;
-        bool flag = 0;
+        int pos = i;
         for(int j = i + 1;j < str.size();++j)
         {
             if(str[i] == str[j])
             {
                 count++;
                 pos = j;
-                flag = 0;
             }
             else
             {
-                pos = j;
-                flag = 1;
                 break;
             }
         }
@@ -36,7 +32,7 @@ string Solution(string str)
         count = 1;
         temp.push_back(str[i]);
         cout << "temp = " << temp << endl;
-        i = pos - flag;
+        i = pos;
         cout << "pos = " << pos << endl;
     }
     return temp;
