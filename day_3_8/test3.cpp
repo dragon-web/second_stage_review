@@ -30,10 +30,14 @@ string Solution(string str)
             }
         }
         Ch = to_string(count);
-        temp.assign(Ch);
+        cout << "Ch = " << Ch << endl;
+        temp += Ch;
+        cout << "temp1 = " << temp << endl;
         count = 1;
         temp.push_back(str[i]);
-        i = pos;
+        cout << "temp = " << temp << endl;
+        i = pos - flag;
+        cout << "pos = " << pos << endl;
     }
     return temp;
 }
