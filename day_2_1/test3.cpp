@@ -13,14 +13,13 @@ int Solution(string& str)
     }
     size_t len = 0;
     size_t rt = 0; // 保存现有字符尾部
-    temp.insert(str[0]);
     for(size_t i = 0;i < str.size();++i)
     {
         if(i != 0)
         {
-            temp.erase();
+            temp.erase(temp.find(str[i-1]));
         }
-        if(rt < str.size() && temp.find(str[i]) != temp.end())
+        while(rt < str.size() && temp.find(str[i]) == temp.end())
         {
             temp.insert(str[i]);
             rt++;
@@ -38,7 +37,5 @@ int main()
       int ret = Solution(str);
       cout << ret << endl;
     }
-
-
     return 0;
 }

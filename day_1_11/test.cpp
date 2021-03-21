@@ -25,7 +25,7 @@ int main()
     vector<vector <int>> dp;
     vector<int> temp;
     size_t length;
-    cout << "请输入你要输入二维数组长度"<<endl;
+    cout << "请输入你要输入二维数组行数"<<endl;
     cin >> length;
     size_t count = 0;
     while(count < length)

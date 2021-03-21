@@ -7,9 +7,8 @@ using namespace std;
 
 int main()
 {
-    unordered_set<char> dp;
-    dp.insert('a');
-    if(dp.find('a') == dp.end())
+    unordered_set<int> dp;
+    if(dp.find(1) == dp.end())
     {
         cout << "找不到" << endl;
     }
